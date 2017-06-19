@@ -84,7 +84,7 @@ exports.signin = function (req, res) {
 };
 
 exports.signout = function (req, res) {
-  delete req.session.user;
+  req.session.destroy();
   // delete app.locals.current_user
   res.redirect('/')
 };
