@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var signController = require('../controllers/sign');
+var topicController = require('../controllers/topic');
 var auth = require('../middlewares/auth');
 
 // 显示注册页面
@@ -27,13 +28,9 @@ router.get('/', function(req, res, next) {
 });
 
 //显示发表话题页面
-router.get('/topic/create', auth.requireLogin, function(req, res){
-  res.render('topic/create');
-});
+router.get('/topic/create', auth.requireLogin, topicController.showCreate);
 
 //处理用户提交的话题信息
-router.post('/topic/create', auth.requireLogin, function(req, res){
-
-})
+router.post('/topic/create', auth.requireLogin, topicController.create)
 
 module.exports = router;
